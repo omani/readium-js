@@ -156,7 +156,8 @@ define(['readium_shared_js/globals', 'text!version.json', 'jquery', 'underscore'
                 if (!origin) {
                     origin = window.location.protocol + '//' + window.location.host;
                 }
-                var thisRootUrl = origin + window.location.pathname;
+                // var thisRootUrl = origin + window.location.pathname;
+                var thisRootUrl = origin + '/';
                 
                 console.debug("BASE URL: " + thisRootUrl);
                 console.debug("RELATIVE URL: " + ebookURL);
