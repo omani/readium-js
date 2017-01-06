@@ -157,7 +157,7 @@ define(['readium_shared_js/globals', 'text!version.json', 'jquery', 'underscore'
                     origin = window.location.protocol + '//' + window.location.host;
                 }
                 // var thisRootUrl = origin + window.location.pathname;
-                var thisRootUrl = origin + '/';
+                var thisRootUrl = origin + '/';  // biblemesh_
                 
                 console.debug("BASE URL: " + thisRootUrl);
                 console.debug("RELATIVE URL: " + ebookURL);
