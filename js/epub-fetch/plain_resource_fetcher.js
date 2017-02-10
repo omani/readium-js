@@ -75,6 +75,12 @@ define(['jquery', 'URIjs', './discover_content_type'], function ($, URI, Content
             if (typeof fileUrl === 'undefined') {
                 throw 'Fetched file URL is undefined!';
             }
+
+            if(fileUrl.match(/(\/META-INF\/encryption\.xml|\/META-INF\/com\.apple\.ibooks\.display-options\.xml)$/)) {
+                onerror();
+                return;
+            }
+
             $.ajax({
                 // encoding: "UTF-8",
                 // mimeType: "text/plain; charset=UTF-8",
