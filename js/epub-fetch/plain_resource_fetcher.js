@@ -101,6 +101,10 @@ define(['jquery', 'URIjs', './discover_content_type', 'biblemesh_Settings'], fun
                         fetchCallback(result);
                     },
                     error: function (xhr, status, errorThrown) {
+                        if(xhr.status == 403) {  // biblemesh_
+                            location.reload();
+                            return;
+                        }
                         if(optionalFetch) {
                             Settings.put('404:' + fileUrl, 1)
                         }
