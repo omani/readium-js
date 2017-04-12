@@ -11,7 +11,7 @@
 //  used to endorse or promote products derived from this software without specific 
 //  prior written permission.
 
-define(['jquery', 'URIjs', './discover_content_type', 'biblemesh_Settings'], function ($, URI, ContentTypeDiscovery, Settings) {
+define(['jquery', 'URIjs', './discover_content_type', 'biblemesh_Settings', 'i18nStrings'], function ($, URI, ContentTypeDiscovery, Settings, Strings) {
 
     var PlainResourceFetcher = function(parentFetcher){
 
@@ -102,7 +102,15 @@ define(['jquery', 'URIjs', './discover_content_type', 'biblemesh_Settings'], fun
                     },
                     error: function (xhr, status, errorThrown) {
                         if(xhr.status == 403) {  // biblemesh_
-                            location.reload();
+                            if(location.search.match(/[\?&]widget=1/)) {
+                                parent.postMessage({
+                                    action: 'forbidden',
+                                    iframeid: window.name,
+                                    payload: Strings.biblemesh_widget_no_access,
+                                }, '*');
+                            } else {
+                                location.reload();
+                            }
                             return;
                         }
                         if(optionalFetch) {
