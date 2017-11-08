@@ -63,6 +63,8 @@ define(['readium_shared_js/globals', 'text!version.json', 'jquery', 'underscore'
             // Empty title in Internet Explorer blows the XHTML parser (document.open/write/close instead of BlobURI)
             contentDocumentHtml = contentDocumentHtml.replace(/<title>[\s]*<\/title>/g, '<title>TITLE</title>');
             contentDocumentHtml = contentDocumentHtml.replace(/<title[\s]*\/>/g, '<title>TITLE</title>');
+
+            contentDocumentHtml = contentDocumentHtml.replace(/<!--[\s\S]*?-->/g, "");  // biblemesh_: comments mess up the CFI's
             
             return contentDocumentHtml;
         };
