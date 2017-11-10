@@ -46,7 +46,8 @@ define(['readium_shared_js/globals', 'text!version.json', 'jquery', 'underscore'
             
             console.log("EPUB doc base href:");
             console.log(baseHref);
-            var base = "<base href=\"" + encodeURI(escapeMarkupEntitiesInUrl(baseHref)) + "\"/>";
+            // var base = "<base href=\"" + encodeURI(escapeMarkupEntitiesInUrl(baseHref)) + "\"/>";
+            var base = "<base href=\"" + escapeMarkupEntitiesInUrl(baseHref) + "\"/>";  // biblemesh_
 
             var scripts = "<script type=\"text/javascript\">(" + injectedScript.toString() + ")()<\/script>";
 

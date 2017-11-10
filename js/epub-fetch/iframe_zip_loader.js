@@ -15,8 +15,9 @@ define(['URIjs', 'readium_shared_js/views/iframe_loader', 'underscore', './disco
 
     var zipIframeLoader = function( getCurrentResourceFetcher, contentDocumentTextPreprocessor) {
 
-        var isIE = (window.navigator.userAgent.indexOf("Trident") > 0 || window.navigator.userAgent.indexOf("Edge") > 0 || window.navigator.userAgent.indexOf('CriOS') > 0);
-            
+        // var isIE = (window.navigator.userAgent.indexOf("Trident") > 0 || window.navigator.userAgent.indexOf("Edge") > 0 || window.navigator.userAgent.indexOf('CriOS') > 0);
+        var isIE = true  // this has downsides (see below) but is presently the only way to get the iframe working in Android React Native Webview
+
         var basicIframeLoader = new IFrameLoader();
 
         var self = this;
