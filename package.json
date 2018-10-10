@@ -52,7 +52,7 @@
     "crypto-js": "latest",
     "gift": "latest",
     "requirejs-text": "latest",
-    "zipjs": "github:danielweck/zip.js#master"
+    "zip-js": "github:danielweck/zip.js#master"
   },
   "scripts": {
     "cson2json": "node ./readium-shared-js/readium-cfi-js/node_modules/cson/bin/cson2json package.cson > package.json && node readium-shared-js/readium-cfi-js/readium-build-tools/optimizePackageJsonScripts.js",
