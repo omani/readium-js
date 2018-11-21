@@ -19,7 +19,7 @@ define([],
             var self = this;
 
             this.parseXml = function(xmlString) {
-                return self.parseMarkup(xmlString, 'text/xml');
+                return self.parseMarkup(xmlString.trim(), 'text/xml');
             };
 
             this.parseMarkup = function(markupString, contentType) {
