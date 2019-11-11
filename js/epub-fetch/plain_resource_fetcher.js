@@ -11,7 +11,7 @@
 //  used to endorse or promote products derived from this software without specific 
 //  prior written permission.
 
-define(['jquery', 'URIjs', './discover_content_type', 'biblemesh_Settings', 'i18nStrings'], function ($, URI, ContentTypeDiscovery, Settings, Strings) {
+define(['jquery', 'URIjs', './discover_content_type', 'biblemesh_Settings', 'i18nStrings', 'biblemesh_AppComm'], function ($, URI, ContentTypeDiscovery, Settings, Strings, biblemesh_AppComm) {
 
     var PlainResourceFetcher = function(parentFetcher){
 
@@ -109,7 +109,13 @@ define(['jquery', 'URIjs', './discover_content_type', 'biblemesh_Settings', 'i18
                                     payload: Strings.biblemesh_widget_no_access,
                                 }, '*');
                             } else {
-                                location.reload();
+                                biblemesh_AppComm.postMsg('reportError', {
+                                    errorCode: 'permission denied',
+                                    info: {
+                                        request: 'plain resource',
+                                        url: fileUrl,
+                                    },
+                                });
                             }
                             return;
                         }
