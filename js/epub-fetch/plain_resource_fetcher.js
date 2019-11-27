@@ -103,11 +103,7 @@ define(['jquery', 'URIjs', './discover_content_type', 'biblemesh_Settings', 'i18
                     error: function (xhr, status, errorThrown) {
                         if(xhr.status == 403) {  // biblemesh_
                             if(location.search.match(/[\?&]widget=1/)) {
-                                parent.postMessage({
-                                    action: 'forbidden',
-                                    iframeid: window.name,
-                                    payload: Strings.biblemesh_widget_no_access,
-                                }, '*');
+                                biblemesh_AppComm.postMsg('forbidden', Strings.biblemesh_widget_no_access);
                             } else {
                                 biblemesh_AppComm.postMsg('reportError', {
                                     errorCode: 'permission denied',
