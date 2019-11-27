@@ -88,6 +88,9 @@ define(['jquery', 'underscore', '../epub-fetch/markup_parser', 'URIjs', './packa
 
             var dff = $.Deferred();
 
+            dff.resolve();
+            return;
+
             //if layout not set
             if(!metadata.rendition_layout)
             {

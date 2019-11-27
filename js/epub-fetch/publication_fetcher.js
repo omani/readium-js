@@ -413,6 +413,10 @@ define(['jquery', 'URIjs', './markup_parser', './plain_resource_fetcher', './zip
         // Currently needed for deobfuscating fonts
         this.setPackageMetadata = function(packageMetadata, settingFinishedCallback) {
 
+            _encryptionHandler = new EncryptionHandler(undefined);
+            settingFinishedCallback();
+            return;
+
             self.getXmlFileDom('/META-INF/encryption.xml', function (encryptionDom) {
 
                 var encryptionData = EncryptionHandler.CreateEncryptionData(packageMetadata.id, encryptionDom);
