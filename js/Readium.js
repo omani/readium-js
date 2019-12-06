@@ -66,7 +66,28 @@ define(['readium_shared_js/globals', 'text!version.json', 'jquery', 'underscore'
             contentDocumentHtml = contentDocumentHtml.replace(/<title[\s]*\/>/g, '<title>TITLE</title>');
 
             contentDocumentHtml = contentDocumentHtml.replace(/<!--[\s\S]*?-->/g, "");  // biblemesh_: comments mess up the CFI's
-            
+
+            // xhtml self-closing tag syntax causes issues because the file may not be recognized as xhtml, but rather html
+            contentDocumentHtml = (
+                contentDocumentHtml
+                    .replace(/<([a-z]*)(\s(?:[^"'>]|"[^"]*"|'[^']*')*)\/\s*>/gi, function (match, tag, tagContents) {
+                        if(
+                            ["area", "base", "br", "col", "command", "embed", "hr", "img", "input", "keygen", "link", "menuitem", "meta", "param", "source", "track", "wbr"]
+                                .includes(tag.toLowerCase())
+                        ) {
+                            // it is a void tag that can have the slash before the end
+                            return match;
+                        }
+                        return '<' + tag + tagContents + '></' + tag + '>';
+                    })
+    
+                    // The following character causes the page not to load. I replace it with space to prevent messing up the cfi's.
+                    .replace(/\u2029/g, ' ')
+    
+                    // The following character causes the contents of the head tag to be placed in the body tag (yes, I know it is crazy--but it is true).  I replace it with space to prevent messing up the cfi's.
+                    .replace(/\uFEFF/g, ' ')
+            );
+
             return contentDocumentHtml;
         };
 
